@@ -16,7 +16,6 @@ public class GenerateAnimalsInIsland extends Island {
             int x = (int) (Math.random() * width);
             int y = (int) (Math.random() * height);
 
-
             int count = 0;
             while(isOccupied(x, y) && count < 5) {
                 x = (int) (Math.random() * width);

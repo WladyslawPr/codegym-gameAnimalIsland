@@ -28,7 +28,6 @@ public class GenerateHerbsInIsland extends Island {
             herb.setIsland(this);
             this.geographicalFeatures.add(herb);
             this.herbList.add(herb);
-
         }
     }
 }

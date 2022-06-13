@@ -72,6 +72,7 @@ public class Island {
     }
 
     void printGeographicalFeatureInfo() {
+
        for(GeographicalFeature feature : this.geographicalFeatures) {
            System.out.println(feature.toString());
        }
