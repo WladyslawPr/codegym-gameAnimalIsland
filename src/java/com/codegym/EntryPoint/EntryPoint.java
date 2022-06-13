@@ -7,7 +7,7 @@ public class EntryPoint {
 
     public EntryPoint() {
         // create islands
-        Island island = new Island();
+        Island island = new Island(100, 20);
 
     }
 

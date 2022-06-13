@@ -22,7 +22,7 @@ public class Herb implements GeographicalFeature {
 
     private static List<Integer> listId = new ArrayList<>();
 
-    Herb(int size, int x, int y) {
+    public Herb(int size, int x, int y) {
 
         this.size = size;
         this.x = x;
