@@ -27,7 +27,7 @@ public interface Animal {  // abstract class ?
 
     //boolean isKill();  ?
     boolean isHungry();
-    boolean isThirsty();
+   // boolean isThirsty(); Test
     boolean feedSelf();
     void seekFood();
 }

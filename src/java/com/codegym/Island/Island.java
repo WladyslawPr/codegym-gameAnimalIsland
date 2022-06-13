@@ -24,7 +24,7 @@ public class Island {
     }
 
 
-     Herb hasHerb(int x, int y) {
+   public Herb hasHerb(int x, int y) {
 
        Herb herb = null;
        for (Herb herbs : herbList) {
@@ -38,7 +38,7 @@ public class Island {
     }
 
     // Test
-    boolean isOccupied(int x, int y) {
+   public boolean isOccupied(int x, int y) {
 
        boolean isOccupied = false;
 
@@ -76,6 +76,28 @@ public class Island {
            System.out.println(feature.toString());
        }
     }
+
+   public int getWidth() {
+       return width;
+    }
+
+    void setWidth(int width) {
+       this.width = width;
+    }
+
+   public int getHeight() {
+       return height;
+    }
+
+    void setHeight(int height) {
+       this.height = height;
+    }
+
+    List<Animal> getAnimals() {
+       return animals;
+    }
+
+
 
 
 

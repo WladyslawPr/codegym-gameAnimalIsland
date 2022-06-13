@@ -13,7 +13,7 @@ public class Herb implements GeographicalFeature {
 
 
     private int size; // max size 200 !?
-    private char symbol = '#';  // later -> Emoji ?
+    private char symbol = 'H';  // later -> Emoji ?
     private int x;
     private int y;
     private Island island;
@@ -46,7 +46,7 @@ public class Herb implements GeographicalFeature {
         this.size++;
     }
 
-    void decreaseSize() {
+   protected void decreaseSize() {
         this.size--;
     }
 
@@ -54,7 +54,7 @@ public class Herb implements GeographicalFeature {
         this.size = this.size + increment;
     }
 
-    void decreaseSize(int increment) {
+   public void decreaseSize(int increment) {
         this.size = this.size - increment;
     }
 
