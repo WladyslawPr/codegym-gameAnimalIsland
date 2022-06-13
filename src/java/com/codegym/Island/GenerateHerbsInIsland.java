@@ -11,7 +11,6 @@ public class GenerateHerbsInIsland extends Island {
     }
 
     void genHerb(int numHerb) {
-
         for (int i = 0; i < numHerb; i++) {
 
             int size = (int) (Math.random() * 200);

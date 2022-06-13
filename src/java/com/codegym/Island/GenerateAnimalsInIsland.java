@@ -10,7 +10,6 @@ public class GenerateAnimalsInIsland extends Island {
     }
 
     void genAnimals(int numAnimals) {
-
         for (int i = 0; i < numAnimals; i++) {
 
             int x = (int) (Math.random() * width);

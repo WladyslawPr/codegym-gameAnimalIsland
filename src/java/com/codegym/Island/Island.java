@@ -27,7 +27,6 @@ public class Island {
      Herb hasHerb(int x, int y) {
 
        Herb herb = null;
-
        for (Herb herbs : herbList) {
            if(herbs.getX() == x && herbs.getY() == y) {
                herb = herbs;
