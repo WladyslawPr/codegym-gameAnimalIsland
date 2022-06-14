@@ -95,7 +95,7 @@ public class Bear implements Animal {
 
    @Override
    public void move(double direction) {
-      int distance = (int) (Math.random() * 2 + 1);
+      int distance = (int) (Math.random() * 2);
       move(direction, distance);
 
    }

@@ -1,6 +1,8 @@
 package com.codegym.Island;
 
 
+import com.codegym.Animals.carnivore.*;
+import com.codegym.Animals.herbivore.*;
 import com.codegym.Interfaces.Animal;
 
 public class GenerateAnimalsInIsland extends Island {
@@ -25,37 +27,38 @@ public class GenerateAnimalsInIsland extends Island {
             int energy = (int) (Math.random() * 10);
             double randomAnimal = Math.random();
 
+
             Animal animal = null;
             if (randomAnimal < 0.5) {
-                //  animal = new Bear(x, y, energy);
+                  animal = new Bear(x, y, energy);
             } else if (randomAnimal < 1) {
-                //   animal = new Boa(x, y, energy);
+                   animal = new Boa(x, y, energy);
             } else if (randomAnimal < 1.5) {
-                //  animal = new Eagle(x, y, energy);
+                  animal = new Eagle(x, y, energy);
             } else if (randomAnimal < 2) {
-                //  animal = new Fox(x, y, energy);
+                  animal = new Fox(x, y, energy);
             } else if (randomAnimal < 2.5) {
-                //  animal = new Wolf(x, y, energy);
+                  animal = new Wolf(x, y, energy);
             } else if (randomAnimal < 3) {
-                //  animal = new Boar(x, y, energy);
+                  animal = new Boar(x, y, energy);
             } else if (randomAnimal < 3.5) {
-                //  animal = new Buffalo(x, y, energy);
+                  animal = new Buffalo(x, y, energy);
             } else if (randomAnimal < 4) {
-                //  animal = new Caterpillar(x, y, energy);
+                  animal = new Caterpillar(x, y, energy);
             } else if (randomAnimal < 4.5) {
-                //  animal = Deer(x, y, energy);
+                  animal = new Deer(x, y, energy);
             } else if (randomAnimal < 5) {
-                //  animal = new Duck(x, y, energy);
+                  animal = new Duck(x, y, energy);
             } else if (randomAnimal < 5.5) {
-                //  animal = new Goat(x, y, energy);
+                  animal = new Goat(x, y, energy);
             } else if (randomAnimal < 6) {
-                //  animal = new Horse(x, y, energy);
+                  animal = new Horse(x, y, energy);
             } else if (randomAnimal < 6.5) {
-                //  animal = new Mouse(x, y, energy);
+                  animal = new Mouse(x, y, energy);
             } else if (randomAnimal < 7) {
-                //  animal = Rabbit(x, y, energy);
+                  animal = new Rabbit(x, y, energy);
             } else if (randomAnimal < 7.5) {
-                //  animal = new Sheep(x, y, energy);
+                  animal = new Sheep(x, y, energy);
             }
             this.animals.add(animal);
             animal.setIsland(this);

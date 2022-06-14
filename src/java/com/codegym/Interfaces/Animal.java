@@ -9,7 +9,7 @@ public interface Animal {  // abstract class ?
     int getX(); //  [][] ?
     int getY();
 
-    void move(double direction);    // from 1 to 4;
+    void move(double direction);    // from 0.25 to 1(4);
 
 
     char getSymbol();
