@@ -1,27 +1,17 @@
 package com.codegym.Animals.carnivore;
 
+import com.codegym.Animals.Abstract.Animal;
 import com.codegym.Animals.plants.Herb;
 import com.codegym.Annotantions.ParametersWithCarnivore;
-import com.codegym.Interfaces.Animal;
 import com.codegym.Island.Island;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 //@Emoji
 //@Data
 @ParametersWithCarnivore(maxCountPerCell = 20, speedCellsPerTurn = 3)
-public class Eagle implements Animal {
+public class Eagle extends Animal {
 
-    private char symbol = 'E'; // later emoji;
-    private int x;
-    private int y;
-    private int energy; // max 80 - "8";
-    private int id;
-    private Island island;
-
-    private static List<Integer> idList = new ArrayList<>();
+    private char symbol = 'E';
 
     public Eagle() {
         this.x = 0;
@@ -41,61 +31,16 @@ public class Eagle implements Animal {
         idList.add(id);
     }
 
-    void move(double direction, int distance) {
-
-        int initX = this.x;
-        int initY = this.y;
-
-        int newX = initX;
-        int newY = initY;
-
-        if (direction < 0.25) {
-            // north.
-            newY = initY - distance;
-        } else if (direction < 0.5) {
-            // east.
-            newX = initX + distance;
-        } else if (direction < 0.75) {
-            // south.
-            newY = initY + distance;
-        } else if (direction < 1) {
-            // west.
-            newX = initX - distance;
-        }
-
-        if (this.island != null) {
-            int width = this.island.getWidth();
-            int height = this.island.getHeight();
-
-            if (newX < 0) {
-                newX = width - 1;
-            } else if (newX > width - 1) {
-                newX = 0;
-            }
-
-            if (newY < 0) {
-                newY = height - 1;
-            } else if (newY > height - 1) {
-                newY = 0;
-            }
-            if (island.isOccupied(newX, newY)) {
-                newX = initX;
-                newY = initY;
-            }
-        }
-        this.x = newX;
-        this.y = newY;
-
-    }
-
-
-
-
     @Override
     public void move(double direction) {
         int distance = (int) (Math.random() * 3);
         move(direction, distance);
 
+    }
+
+    @Override
+    public void move(double direction, int distance) {
+        super.move(direction, distance);
     }
 
     @Override
@@ -169,12 +114,6 @@ public class Eagle implements Animal {
         return (energy < 1);
     }
 
- /*  @Override
-   public boolean isThirsty() {
-      return false;
-   }
-
-  */
 
     @Override
     public boolean feedSelf() {
@@ -194,8 +133,6 @@ public class Eagle implements Animal {
 
         if (island.hasHerb(x, y) != null) {
             feedSelf();
-
-
             // to move east.
         } else if (island.hasHerb(x + 1, y) != null || island.hasHerb(x + 1, y + 1) != null || island.hasHerb(x + 1, y - 1) != null || island.hasHerb(x + 1, y + 2) != null || island.hasHerb(x + 1, y - 2) != null) {
             move(0.3, 1);
@@ -224,7 +161,6 @@ public class Eagle implements Animal {
             move(Math.random(), 3);
         }
     }
-
 
     @Override
     public String toString() {

@@ -2,31 +2,63 @@ package com.codegym.Island;
 
 
 import com.codegym.Animals.plants.Herb;
+import com.codegym.InterfacesGeographical.GeographicalFeature;
+import java.util.ArrayList;
+import java.util.List;
+import static com.codegym.Island.Island.sumTries;
 
-public class GenerateHerbsInIsland extends Island {
 
+public interface GenerateHerbsInIsland  {
 
-    public GenerateHerbsInIsland(int width, int height) {
-        super(width, height);
+    List<GeographicalFeature> geographicalFeatures = new ArrayList<>();
+    List<Herb> herbList = new ArrayList<>();
+
+    default Herb hasHerb(int x, int y) {
+
+        Herb herb = new Herb(herbList.size(), x, y);
+        for (Herb herbs : herbList) {
+            if(herbs.getX() == x && herbs.getY() == y) {
+                herb = herbs;
+                break;
+            }
+        }
+        return herb;
+
     }
 
-    void genHerb(int numHerb) {
+  default boolean hasGeographicalFeature(int x, int y) {
+
+        boolean hasFeature = false;
+
+        for(GeographicalFeature geographicalFeature : geographicalFeatures) {
+            if (geographicalFeature.getX() == x && geographicalFeature.getY() == y) {
+                hasFeature = true;
+                break;
+            }
+        }
+        return hasFeature;
+    }
+
+  default void genHerb(int numHerb) {
         for (int i = 0; i < numHerb; i++) {
 
             int size = (int) (Math.random() * 200);
-            int x = (int) (Math.random() * width);
-            int y = (int) (Math.random() * height);
+            int x = (int) (Math.random() * ( (Island) this ).width);
+            int y = (int) (Math.random() * ( (Island) this ).height);
             int count = 0;
 
-            while ((isOccupied(x, y)) || hasGeographicalFeature(x, y) && count < 5) {
-                x = (int) (Math.random() * width);
-                y = (int) (Math.random() * height);
+            //(isOccupied(x, y))
+            while (hasGeographicalFeature(x, y) && count < sumTries) {
+                x = (int) (Math.random() * ( (Island) this ).width);
+                y = (int) (Math.random() * ( (Island) this ).height);
                 count++;
             }
             Herb herb = new Herb(size, x, y);
-            herb.setIsland(this);
+            herb.setIsland((Island) this);
             this.geographicalFeatures.add(herb);
             this.herbList.add(herb);
         }
     }
+
+
 }

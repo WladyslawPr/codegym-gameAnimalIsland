@@ -1,27 +1,17 @@
 package com.codegym.Animals.herbivore;
 
+import com.codegym.Animals.Abstract.Animal;
 import com.codegym.Animals.plants.Herb;
 import com.codegym.Annotantions.ParametersWithHerbivore;
-import com.codegym.Interfaces.Animal;
 import com.codegym.Island.Island;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 //@Emoji
 //@Data
 @ParametersWithHerbivore(weight = 700, maxSaturation = 100)
-public class Buffalo implements Animal {
+public class Buffalo extends Animal {
 
-    private char symbol = '2'; // later emoji;
-    private int x;
-    private int y;
-    private int energy; // max 100 - "10";
-    private int id;
-    private Island island;
-
-    private static List<Integer> idList = new ArrayList<>();
+    private char symbol = '2';
 
     public Buffalo() {
         this.x = 0;
@@ -41,61 +31,16 @@ public class Buffalo implements Animal {
         idList.add(id);
     }
 
-    void move(double direction, int distance) {
-
-        int initX = this.x;
-        int initY = this.y;
-
-        int newX = initX;
-        int newY = initY;
-
-        if (direction < 0.25) {
-            // north.
-            newY = initY - distance;
-        } else if (direction < 0.5) {
-            // east.
-            newX = initX + distance;
-        } else if (direction < 0.75) {
-            // south.
-            newY = initY + distance;
-        } else if (direction < 1) {
-            // west.
-            newX = initX - distance;
-        }
-
-        if (this.island != null) {
-            int width = this.island.getWidth();
-            int height = this.island.getHeight();
-
-            if (newX < 0) {
-                newX = width - 1;
-            } else if (newX > width - 1) {
-                newX = 0;
-            }
-
-            if (newY < 0) {
-                newY = height - 1;
-            } else if (newY > height - 1) {
-                newY = 0;
-            }
-            if (island.isOccupied(newX, newY)) {
-                newX = initX;
-                newY = initY;
-            }
-        }
-        this.x = newX;
-        this.y = newY;
-
-    }
-
-
-
-
     @Override
     public void move(double direction) {
         int distance = (int) (Math.random() * 3);
         move(direction, distance);
 
+    }
+
+    @Override
+    public void move(double direction, int distance) {
+        super.move(direction, distance);
     }
 
     @Override
@@ -169,13 +114,6 @@ public class Buffalo implements Animal {
         return (energy < 100);
     }
 
- /*  @Override
-   public boolean isThirsty() {
-      return false;
-   }
-
-  */
-
     @Override
     public boolean feedSelf() {
         Herb herb = island.hasHerb(x, y);
@@ -191,40 +129,8 @@ public class Buffalo implements Animal {
 
     @Override
     public void seekFood() {
-
-        if (island.hasHerb(x, y) != null) {
-            feedSelf();
-
-
-            // to move east.
-        } else if (island.hasHerb(x + 1, y) != null || island.hasHerb(x + 1, y + 1) != null || island.hasHerb(x + 1, y - 1) != null || island.hasHerb(x + 1, y + 2) != null || island.hasHerb(x + 1, y - 2) != null) {
-            move(0.3, 1);
-        } else if (island.hasHerb(x + 2, y) != null || island.hasHerb(x + 2, y + 1) != null || island.hasHerb(x + 2, y - 1) != null || island.hasHerb(x + 2, y + 2) != null || island.hasHerb(x + 2, y - 2) != null) {
-            move(0.3, 2);
-
-            // to move west.
-        } else if (island.hasHerb(x - 1, y) != null || island.hasHerb(x - 1, y + 1) != null || island.hasHerb(x - 1, y - 1) != null || island.hasHerb(x - 1, y + 2) != null || island.hasHerb(x - 1, y - 2) != null) {
-            move(0.8, 1);
-        } else if (island.hasHerb(x - 2, y) != null || island.hasHerb(x - 2, y + 1) != null || island.hasHerb(x - 2, y - 1) != null || island.hasHerb(x - 2, y + 2) != null || island.hasHerb(x - 2, y - 2) != null) {
-            move(0.8, 2);
-
-            // to move north.
-        } else if (island.hasHerb(x, y - 1) != null) {
-            move(0.1, 1);
-        } else if (island.hasHerb(x, y - 2) != null) {
-            move(0.1, 2);
-
-            // to move south.
-        } else if (island.hasHerb(x, y + 1) != null) {
-            move (0.6, 1);
-        } else if (island.hasHerb(x, y + 3) != null) {
-            move (0.6, 3);
-
-        } else {
-            move(Math.random(), 3);
-        }
+        super.seekFood();
     }
-
 
     @Override
     public String toString() {

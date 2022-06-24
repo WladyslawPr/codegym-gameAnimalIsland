@@ -1,4 +1,4 @@
-package com.codegym.Interfaces;
+package com.codegym.InterfacesGeographical;
 
 
 import com.codegym.Island.Island;

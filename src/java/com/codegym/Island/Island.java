@@ -1,105 +1,67 @@
 package com.codegym.Island;
 
-import com.codegym.Animals.plants.Herb;
-import com.codegym.Interfaces.Animal;
-import com.codegym.Interfaces.GeographicalFeature;
-
-import java.util.ArrayList;
+import com.codegym.Animals.Abstract.*;
+import com.codegym.InterfacesGeographical.GeographicalFeature;
 import java.util.List;
 
-public class Island {
+
+
+public class Island implements GenerateAnimalsInIsland, GenerateHerbsInIsland, AnimalCounting, LifeEndurance, DrawIsland {
+
+    protected static final int sumTries = 5;
 
     protected int width;
     protected int height;
-
-
-    List<Animal> animals = new ArrayList<>();
-    List<GeographicalFeature> geographicalFeatures = new ArrayList<>();
-    List<Herb> herbList = new ArrayList<>();
-
 
    public Island(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
-
-   public Herb hasHerb(int x, int y) {
-
-       Herb herb = null;
-       for (Herb herbs : herbList) {
-           if(herbs.getX() == x && herbs.getY() == y) {
-               herb = herbs;
-               break;
-           }
-       }
-       return herb;
-
+    public int getWidth() {
+        return width;
     }
 
-    // Test
-   public boolean isOccupied(int x, int y) {
+    public void setWidth(int width) {
+        this.width = width;
+    }
 
-       boolean isOccupied = false;
+    public int getHeight() {
+        return height;
+    }
 
-        for (Animal animal : animals) {
-            if (animal.getX() == x && animal.getY() == y) {
-                isOccupied = true;
-                break;
-            }
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public List<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void addAnimal(Animal animal) {
+        // check incoming animal's position is not already occupied before adding to island
+        if (!isOccupied(animal.getX(), animal.getY())) {
+            this.animals.add(animal);
+
         }
-        return isOccupied;
     }
 
-    boolean hasGeographicalFeature(int x, int y) {
-
-       boolean hasFeature = false;
-
-       for(GeographicalFeature geographicalFeature : geographicalFeatures) {
-           if (geographicalFeature.getX() == x && geographicalFeature.getY() == y) {
-               hasFeature = true;
-               break;
-           }
-       }
-       return hasFeature;
+    public void removeAnimal(Animal animal) {
+        this.animals.remove(animal);
     }
 
-    void printAnimalInfo() {
+    public void printAnimalInfo() {
        for(Animal beast : this.animals) {
            System.out.println(beast.toString());
        }
     }
 
-    void printGeographicalFeatureInfo() {
+    public void printGeographicalFeatureInfo() {
 
        for(GeographicalFeature feature : this.geographicalFeatures) {
            System.out.println(feature.toString());
        }
+
     }
-
-   public int getWidth() {
-       return width;
-    }
-
-    void setWidth(int width) {
-       this.width = width;
-    }
-
-   public int getHeight() {
-       return height;
-    }
-
-    void setHeight(int height) {
-       this.height = height;
-    }
-
-    List<Animal> getAnimals() {
-       return animals;
-    }
-
-
-
-
-
 
 }

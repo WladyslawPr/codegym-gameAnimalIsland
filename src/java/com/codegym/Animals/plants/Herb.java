@@ -1,9 +1,7 @@
 package com.codegym.Animals.plants;
 
-
-import com.codegym.Interfaces.GeographicalFeature;
+import com.codegym.InterfacesGeographical.GeographicalFeature;
 import com.codegym.Island.Island;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +9,12 @@ import java.util.List;
 //@Data
 public class Herb implements GeographicalFeature {
 
-
     private int size; // max size 200 !?
-    private char symbol = 'H';  // later -> Emoji ?
+    private char symbol = '#';  // later -> Emoji ?
     private int x;
     private int y;
     private Island island;
     private int id;
-
 
     private static List<Integer> listId = new ArrayList<>();
 
@@ -33,7 +29,6 @@ public class Herb implements GeographicalFeature {
         listId.add(id);
     }
 
-
     public int getSize() {
         return size;
     }
@@ -42,19 +37,19 @@ public class Herb implements GeographicalFeature {
         this.size++;
     }
 
-    void increaseSize() {
+    public void increaseSize() {
         this.size++;
     }
 
-   protected void decreaseSize() {
+    protected void decreaseSize() {
         this.size--;
     }
 
-    void increaseSize(int increment) {
+    public void increaseSize(int increment) {
         this.size = this.size + increment;
     }
 
-   public void decreaseSize(int increment) {
+    public void decreaseSize(int increment) {
         this.size = this.size - increment;
     }
 

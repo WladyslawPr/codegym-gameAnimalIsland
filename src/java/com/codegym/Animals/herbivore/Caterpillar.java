@@ -1,27 +1,17 @@
 package com.codegym.Animals.herbivore;
 
+import com.codegym.Animals.Abstract.Animal;
 import com.codegym.Animals.plants.Herb;
 import com.codegym.Annotantions.ParametersWithHerbivore;
-import com.codegym.Interfaces.Animal;
 import com.codegym.Island.Island;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 //@Emoji
 //@Data
 @ParametersWithHerbivore(maxCountPerCell = 1000, speedCellsPerTurn = 0)
-public class Caterpillar implements Animal {
+public class Caterpillar extends Animal {
 
-    private char symbol = '3'; // later emoji;
-    private int x;
-    private int y;
-    private int energy; // max  - "1";
-    private int id;
-    private Island island;
-
-    private static List<Integer> idList = new ArrayList<>();
+    private char symbol = '3';
 
     public Caterpillar() {
         this.x = 0;
@@ -41,7 +31,7 @@ public class Caterpillar implements Animal {
         idList.add(id);
     }
 
-    void move(double direction, int distance) {
+   public void move(double direction, int distance) {
 
         int initX = this.x;
         int initY = this.y;
@@ -133,13 +123,6 @@ public class Caterpillar implements Animal {
         return (energy < 1);
     }
 
- /*  @Override
-   public boolean isThirsty() {
-      return false;
-   }
-
-  */
-
     @Override
     public boolean feedSelf() {
         Herb herb = island.hasHerb(x, y);
@@ -162,7 +145,6 @@ public class Caterpillar implements Animal {
             move(Math.random(), 0);
         }
     }
-
 
     @Override
     public String toString() {

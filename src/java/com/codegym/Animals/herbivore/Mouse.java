@@ -1,28 +1,17 @@
 package com.codegym.Animals.herbivore;
 
+import com.codegym.Animals.Abstract.Animal;
 import com.codegym.Animals.plants.Herb;
 import com.codegym.Annotantions.ParametersWithHerbivore;
-import com.codegym.Interfaces.Animal;
 import com.codegym.Island.Island;
 
-import java.util.ArrayList;
-import java.util.List;
 
 //@Emoji
 //@Data
 @ParametersWithHerbivore(weight = 0.05, maxCountPerCell = 500, speedCellsPerTurn = 1, maxSaturation = 0.1)
-public class Mouse implements Animal {
+public class Mouse extends Animal {
 
-  //  String symbol = "\uE053";
-
-    private char symbol = '8'; // later emoji;
-    private int x;
-    private int y;
-    private int energy; // max 1 - "";
-    private int id;
-    private Island island;
-
-    private static List<Integer> idList = new ArrayList<>();
+    private char symbol = '8';
 
     public Mouse() {
         this.x = 0;
@@ -42,61 +31,16 @@ public class Mouse implements Animal {
         idList.add(id);
     }
 
-    void move(double direction, int distance) {
-
-        int initX = this.x;
-        int initY = this.y;
-
-        int newX = initX;
-        int newY = initY;
-
-        if (direction < 0.25) {
-            // north.
-            newY = initY - distance;
-        } else if (direction < 0.5) {
-            // east.
-            newX = initX + distance;
-        } else if (direction < 0.75) {
-            // south.
-            newY = initY + distance;
-        } else if (direction < 1) {
-            // west.
-            newX = initX - distance;
-        }
-
-        if (this.island != null) {
-            int width = this.island.getWidth();
-            int height = this.island.getHeight();
-
-            if (newX < 0) {
-                newX = width - 1;
-            } else if (newX > width - 1) {
-                newX = 0;
-            }
-
-            if (newY < 0) {
-                newY = height - 1;
-            } else if (newY > height - 1) {
-                newY = 0;
-            }
-            if (island.isOccupied(newX, newY)) {
-                newX = initX;
-                newY = initY;
-            }
-        }
-        this.x = newX;
-        this.y = newY;
-
-    }
-
-
-
-
     @Override
     public void move(double direction) {
         int distance = (int) (Math.random() * 1);
         move(direction, distance);
 
+    }
+
+    @Override
+    public void move(double direction, int distance) {
+        super.move(direction, distance);
     }
 
     @Override
@@ -170,13 +114,6 @@ public class Mouse implements Animal {
         return (energy < 1);
     }
 
- /*  @Override
-   public boolean isThirsty() {
-      return false;
-   }
-
-  */
-
     @Override
     public boolean feedSelf() {
         Herb herb = island.hasHerb(x, y);
@@ -199,7 +136,6 @@ public class Mouse implements Animal {
             move(Math.random(), 1);
         }
     }
-
 
     @Override
     public String toString() {
